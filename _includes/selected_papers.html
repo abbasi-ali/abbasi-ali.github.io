@@ -1,4 +1,15 @@
 <div class="publications">
   <h2>selected publications</h2>
-  {% bibliography -f papers -q @*[selected=true]* %}
+  <section class="section tint-coral">
+    <h3 class="category">conference papers</h3>
+    {% bibliography -f papers -q @*[selected=true && category=conference]* %}
+  </section>
+  <section class="section tint-apricot">
+    <h3 class="category">preprints</h3>
+    {% bibliography -f papers -q @*[selected=true && category=preprint]* %}
+  </section>
+  <section class="section tint-sand">
+    <h3 class="category">workshop papers</h3>
+    {% bibliography -f papers -q @*[selected=true && category=workshop]* %}
+  </section>
 </div>

@@ -9,7 +9,21 @@ layout: default
   </header>
 
   <article>
-    {{ content }}
+    {% if content contains '<div' or content contains '<section' %}
+      {{ content }}
+    {% else %}
+      {% comment %} Plain markdown page: each h2 block becomes a tinted section {% endcomment %}
+      {% assign tints = 'peach,butter,coral,apricot,sand,stone' | split: ',' %}
+      {% assign chunks = content | split: '<h2' %}
+      {% for chunk in chunks %}
+        {% if forloop.first %}
+          {{ chunk }}
+        {% else %}
+          {% assign t = forloop.index0 | minus: 1 | modulo: tints.size %}
+          <section class="section tint-{{ tints[t] }}"><h2{{ chunk }}</section>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
   </article>
 
 </div>
