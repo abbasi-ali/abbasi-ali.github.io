@@ -144,6 +144,10 @@
     </div>
     {% endif %}
 
+    {% if entry.demo %}
+      {% include demo.html %}
+    {% endif %}
+
     <!-- Hidden bibtex block -->
     {% if entry.bibtex_show %}
     <div class="bibtex hidden">
